@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 # IMPORTANT: Must be named 'urlpatterns' (not 'api_urlpatterns')
 urlpatterns = [
      
-     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),path('api/token/email/', EmailTokenObtainPairView.as_view(), name='token_obtain_pair_email'),
     # Job APIs
     path('api/jobs/', api_views.JobListCreateView.as_view(), name='api_job_list'),
