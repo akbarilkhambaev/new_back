@@ -9,13 +9,14 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         # Поддержка логина по email (без учета регистра)
         email = attrs.get('email')
-        if email:
+        password = attrs.get('password')
+        if email and password:
             email = email.lower()
             try:
                 user = User.objects.get(email__iexact=email)
                 attrs['username'] = user.username
+                attrs['password'] = password  # Явно подставляем пароль
             except User.DoesNotExist:
-                # Не найден пользователь с таким email
                 pass
         return super().validate(attrs)
 
