@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://finprojectfordbr-master-2-production.up.railway.app',
-    'localhost:3000'
+    'http://localhost:3000/',
+    'https://fixed-dividcrm.vercel.app/',
 ]
 
 
@@ -42,10 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fin_app_v2.apps.FinAppV2Config',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
