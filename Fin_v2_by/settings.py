@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
-    'https://dbr-control.up.railway.app'
+    'https://finprojectfordbr-master-2-production.up.railway.app',
+    'localhost:3000'
 ]
 
 
