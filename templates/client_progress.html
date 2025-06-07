@@ -1,0 +1,2147 @@
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="ru">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Панель управления проектами</title>#}
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">#}
+{#    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">#}
+{#    <style>#}
+{#        :root {#}
+{#            --primary: #4f46e5;#}
+{#            --primary-light: #ebe9ff;#}
+{#            --success: #10b981;#}
+{#            --warning: #f59e0b;#}
+{#            --danger: #ef4444;#}
+{#            --info: #3b82f6;#}
+{#            --dark: #1e293b;#}
+{#            --light: #f8fafc;#}
+{#            --gray: #94a3b8;#}
+{#        }#}
+{#        #}
+{#        body {#}
+{#            font-family: 'Poppins', sans-serif;#}
+{#            background-color: #f1f5f9;#}
+{#            color: #334155;#}
+{#            line-height: 1.5;#}
+{#        }#}
+{#        #}
+{#        .dashboard-container {#}
+{#            max-width: 1320px;#}
+{#            margin: 0 auto;#}
+{#            padding: 32px 15px;#}
+{#        }#}
+{#        #}
+{#        /* Header and Welcome Area */#}
+{#        .dashboard-header {#}
+{#            padding-bottom: 20px;#}
+{#            margin-bottom: 30px;#}
+{#            border-bottom: 1px solid #e2e8f0;#}
+{#        }#}
+{#        #}
+{#        .welcome-area {#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: space-between;#}
+{#            margin-bottom: 12px;#}
+{#        }#}
+{#        #}
+{#        .welcome-message h1 {#}
+{#            font-size: 28px;#}
+{#            font-weight: 600;#}
+{#            margin-bottom: 8px;#}
+{#            color: var(--dark);#}
+{#        }#}
+{#        #}
+{#        .welcome-message p {#}
+{#            font-size: 15px;#}
+{#            color: var(--gray);#}
+{#            margin-bottom: 0;#}
+{#        }#}
+{#        #}
+{#        .project-summary {#}
+{#            background: #fff;#}
+{#            border-radius: 12px;#}
+{#            padding: 24px;#}
+{#            margin-bottom: 28px;#}
+{#            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);#}
+{#        }#}
+{#        #}
+{#        .summary-title {#}
+{#            font-size: 16px;#}
+{#            font-weight: 600;#}
+{#            margin-bottom: 20px;#}
+{#            color: var(--dark);#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            gap: 8px;#}
+{#        }#}
+{#        #}
+{#        .summary-title i {#}
+{#            font-size: 18px;#}
+{#            color: var(--primary);#}
+{#        }#}
+{#        #}
+{#        /* KPI Cards */#}
+{#        .kpi-cards {#}
+{#            display: grid;#}
+{#            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));#}
+{#            gap: 20px;#}
+{#            margin-bottom: 30px;#}
+{#        }#}
+{#        #}
+{#        .kpi-card {#}
+{#            background: white;#}
+{#            border-radius: 12px;#}
+{#            padding: 20px;#}
+{#            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);#}
+{#            transition: transform 0.2s ease;#}
+{#        }#}
+{#        #}
+{#        .kpi-card:hover {#}
+{#            transform: translateY(-3px);#}
+{#        }#}
+{#        #}
+{#        .kpi-icon {#}
+{#            width: 50px;#}
+{#            height: 50px;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            border-radius: 10px;#}
+{#            margin-bottom: 15px;#}
+{#            font-size: 22px;#}
+{#        }#}
+{#        #}
+{#        .kpi-primary {#}
+{#            background-color: var(--primary-light);#}
+{#            color: var(--primary);#}
+{#        }#}
+{#        #}
+{#        .kpi-success {#}
+{#            background-color: rgba(16, 185, 129, 0.1);#}
+{#            color: var(--success);#}
+{#        }#}
+{#        #}
+{#        .kpi-warning {#}
+{#            background-color: rgba(245, 158, 11, 0.1);#}
+{#            color: var(--warning);#}
+{#        }#}
+{#        #}
+{#        .kpi-info {#}
+{#            background-color: rgba(59, 130, 246, 0.1);#}
+{#            color: var(--info);#}
+{#        }#}
+{#        #}
+{#        .kpi-value {#}
+{#            font-size: 26px;#}
+{#            font-weight: 700;#}
+{#            margin-bottom: 5px;#}
+{#            color: var(--dark);#}
+{#        }#}
+{#        #}
+{#        .kpi-label {#}
+{#            font-size: 14px;#}
+{#            color: var(--gray);#}
+{#            margin-bottom: 0;#}
+{#        }#}
+{#        #}
+{#        /* Days Remaining Card with Deadline */#}
+{#        .deadline-container {#}
+{#            display: flex;#}
+{#            flex-direction: column;#}
+{#        }#}
+{##}
+{#        .deadline-date {#}
+{#            font-size: 14px;#}
+{#            color: var(--info);#}
+{#            margin-top: 5px;#}
+{#            font-weight: 500;#}
+{#        }#}
+{##}
+{#        .deadline-date span {#}
+{#            font-style: italic;#}
+{#        }#}
+{#        #}
+{#        /* Hours Tracking Styles */#}
+{#        .hours-tracking {#}
+{#            margin-bottom: 28px;#}
+{#        }#}
+{##}
+{#        .hours-card {#}
+{#            background: white;#}
+{#            border-radius: 12px;#}
+{#            padding: 24px;#}
+{#            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);#}
+{#        }#}
+{##}
+{#        .hours-header {#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#            margin-bottom: 20px;#}
+{#        }#}
+{##}
+{#        .hours-title {#}
+{#            font-size: 16px;#}
+{#            font-weight: 600;#}
+{#            color: var(--dark);#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            gap: 8px;#}
+{#            margin: 0;#}
+{#        }#}
+{##}
+{#        .hours-title i {#}
+{#            font-size: 18px;#}
+{#            color: var(--primary);#}
+{#        }#}
+{##}
+{#        .hours-counter {#}
+{#            display: flex;#}
+{#            align-items: baseline;#}
+{#        }#}
+{##}
+{#        .current-hours {#}
+{#            font-size: 30px;#}
+{#            font-weight: 700;#}
+{#            color: var(--primary);#}
+{#        }#}
+{##}
+{#        .divider {#}
+{#            font-size: 24px;#}
+{#            font-weight: 400;#}
+{#            color: var(--gray);#}
+{#            margin: 0 4px;#}
+{#        }#}
+{##}
+{#        .max-hours {#}
+{#            font-size: 24px;#}
+{#            font-weight: 500;#}
+{#            color: var(--dark);#}
+{#        }#}
+{##}
+{#        .hours-unit {#}
+{#            font-size: 16px;#}
+{#            font-weight: 400;#}
+{#            color: var(--gray);#}
+{#            margin-left: 6px;#}
+{#        }#}
+{##}
+{#        .hours-progress-container {#}
+{#            height: 12px;#}
+{#            background-color: #f1f5f9;#}
+{#            border-radius: 6px;#}
+{#            overflow: hidden;#}
+{#            margin-bottom: 15px;#}
+{#        }#}
+{##}
+{#        .hours-progress-bar {#}
+{#            height: 100%;#}
+{#            background: linear-gradient(to right, #4f46e5, #818cf8);#}
+{#            border-radius: 6px;#}
+{#            transition: width 0.3s ease;#}
+{#        }#}
+{##}
+{#        .hours-footer {#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#        }#}
+{##}
+{#        .hours-status {#}
+{#            font-weight: 500;#}
+{#        }#}
+{##}
+{#        .status-indicator {#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            gap: 6px;#}
+{#            font-size: 14px;#}
+{#        }#}
+{##}
+{#        .under-budget {#}
+{#            color: var(--success);#}
+{#        }#}
+{##}
+{#        .over-budget {#}
+{#            color: var(--danger);#}
+{#        }#}
+{##}
+{#        .hours-remaining {#}
+{#            font-size: 14px;#}
+{#            color: var(--gray);#}
+{#        }#}
+{##}
+{#        /* Add hours column to task table */#}
+{#        .task-hours {#}
+{#            display: inline-flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            background-color: var(--primary-light);#}
+{#            color: var(--primary);#}
+{#            border-radius: 4px;#}
+{#            padding: 3px 8px;#}
+{#            font-weight: 600;#}
+{#            font-size: 13px;#}
+{#        }#}
+{#        #}
+{#        /* Task Visualization Tabs */#}
+{#        .view-tabs {#}
+{#            display: flex;#}
+{#            background: #fff;#}
+{#            border-radius: 8px;#}
+{#            overflow: hidden;#}
+{#            margin-bottom: 20px;#}
+{#            border: 1px solid #e2e8f0;#}
+{#            width: fit-content;#}
+{#        }#}
+{#        #}
+{#        .view-tab {#}
+{#            padding: 12px 22px;#}
+{#            font-size: 14px;#}
+{#            font-weight: 500;#}
+{#            color: var(--gray);#}
+{#            cursor: pointer;#}
+{#            background: transparent;#}
+{#            border: none;#}
+{#            position: relative;#}
+{#        }#}
+{#        #}
+{#        .view-tab.active {#}
+{#            color: var(--primary);#}
+{#            background-color: var(--primary-light);#}
+{#        }#}
+{#        #}
+{#        .view-tab:hover:not(.active) {#}
+{#            background-color: #f8fafc;#}
+{#        }#}
+{#        #}
+{#        .view-tab i {#}
+{#            margin-right: 6px;#}
+{#        }#}
+{#        #}
+{#        /* Task Tables */#}
+{#        .task-view {#}
+{#            background: white;#}
+{#            border-radius: 12px;#}
+{#            overflow: hidden;#}
+{#            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);#}
+{#            margin-bottom: 30px;#}
+{#        }#}
+{#        #}
+{#        .task-table {#}
+{#            width: 100%;#}
+{#            border-collapse: separate;#}
+{#            border-spacing: 0;#}
+{#        }#}
+{#        #}
+{#        .task-table th {#}
+{#            background-color: #f8fafc;#}
+{#            color: var(--gray);#}
+{#            font-weight: 600;#}
+{#            font-size: 13px;#}
+{#            text-transform: uppercase;#}
+{#            letter-spacing: 0.5px;#}
+{#            padding: 16px;#}
+{#            border-bottom: 1px solid #e2e8f0;#}
+{#        }#}
+{#        #}
+{#        .task-table td {#}
+{#            padding: 16px;#}
+{#            border-bottom: 1px solid #e2e8f0;#}
+{#            vertical-align: middle;#}
+{#            font-size: 14px;#}
+{#        }#}
+{#        #}
+{#        .task-table tr:last-child td {#}
+{#            border-bottom: none;#}
+{#        }#}
+{#        #}
+{#        .task-title {#}
+{#            font-weight: 500;#}
+{#            color: var(--dark);#}
+{#        }#}
+{#        #}
+{#        .task-badge {#}
+{#            display: inline-block;#}
+{#            padding: 5px 10px;#}
+{#            border-radius: 6px;#}
+{#            font-size: 12px;#}
+{#            font-weight: 500;#}
+{#        }#}
+{#        #}
+{#        .badge-regular {#}
+{#            background-color: #e2e8f0;#}
+{#            color: #475569;#}
+{#        }#}
+{#        #}
+{#        .badge-recurring {#}
+{#            background-color: #dbeafe;#}
+{#            color: #3b82f6;#}
+{#        }#}
+{#        #}
+{#        /* Custom Progress Bar */#}
+{#        .progress-container {#}
+{#            width: 100%;#}
+{#            background-color: #e2e8f0;#}
+{#            border-radius: 6px;#}
+{#            height: 8px;#}
+{#            overflow: hidden;#}
+{#        }#}
+{#        #}
+{#        .progress-bar {#}
+{#            height: 100%;#}
+{#            border-radius: 6px;#}
+{#            background-color: var(--primary);#}
+{#            transition: width 0.3s ease;#}
+{#        }#}
+{#        #}
+{#        .progress-complete .progress-bar {#}
+{#            background-color: var(--success);#}
+{#        }#}
+{#        #}
+{#        .progress-value {#}
+{#            font-size: 13px;#}
+{#            font-weight: 600;#}
+{#            text-align: right;#}
+{#            color: var(--dark);#}
+{#            margin-top: 6px;#}
+{#        }#}
+{#        #}
+{#        /* Sheet Table Styles - Fixed Cell Sizes */#}
+{#        .sheet-container {#}
+{#            overflow-x: auto;#}
+{#            background: white;#}
+{#            border-radius: 12px;#}
+{#            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);#}
+{#        }#}
+{#        #}
+{#        .sheet-table {#}
+{#            width: 100%;#}
+{#            table-layout: fixed;#}
+{#            border-collapse: collapse;#}
+{#        }#}
+{#        #}
+{#        .sheet-table th, #}
+{#        .sheet-table td {#}
+{#            padding: 0;#}
+{#            text-align: center;#}
+{#            border: 1px solid #e2e8f0;#}
+{#            width: 120px;#}
+{#            height: 80px;#}
+{#            overflow: hidden;#}
+{#        }#}
+{#        #}
+{#        .sheet-table th {#}
+{#            background-color: #f8fafc;#}
+{#            color: var(--gray);#}
+{#            font-weight: 600;#}
+{#            font-size: 13px;#}
+{#            position: sticky;#}
+{#            top: 0;#}
+{#            z-index: 10;#}
+{#            padding: 10px;#}
+{#            white-space: nowrap;#}
+{#            height: 60px;#}
+{#            vertical-align: middle;#}
+{#        }#}
+{#        #}
+{#        .sheet-table th:first-child,#}
+{#        .sheet-table td:first-child {#}
+{#            position: sticky;#}
+{#            left: 0;#}
+{#            z-index: 20;#}
+{#            background-color: #f8fafc;#}
+{#            text-align: left;#}
+{#            font-weight: 500;#}
+{#            width: 180px;#}
+{#            padding: 10px 15px;#}
+{#        }#}
+{#        #}
+{#        /* Task Cell Styles */#}
+{#        .task-cell {#}
+{#            position: relative;#}
+{#            cursor: pointer;#}
+{#            transition: background-color 0.2s;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            width: 100%;#}
+{#            height: 100%;#}
+{#        }#}
+{#        #}
+{#        .task-cell:hover {#}
+{#            background-color: #f8fafc;#}
+{#        }#}
+{#        #}
+{#        .cell-progress {#}
+{#            font-weight: 600;#}
+{#            font-size: 16px;#}
+{#        }#}
+{#        #}
+{#        /* Time-based cell colors */#}
+{#        .cell-current-month { background-color: rgba(255, 193, 7, 0.15); }  /* Yellow */#}
+{#        .cell-past-month { background-color: rgba(239, 68, 68, 0.15); }     /* Red */#}
+{#        .cell-completed { background-color: rgba(16, 185, 129, 0.15); }     /* Green */#}
+{#        .cell-future-month { background-color: rgba(59, 130, 246, 0.15); }  /* Blue */#}
+{##}
+{#        /* Text colors to match */#}
+{#        .progress-current-month { color: #FFC107; }  /* Yellow */#}
+{#        .progress-past-month { color: #EF4444; }     /* Red */#}
+{#        .progress-completed { color: #10B981; }      /* Green */#}
+{#        .progress-future-month { color: #3B82F6; }   /* Blue */#}
+{##}
+{#        /* Task count badges with color coding */#}
+{#        .count-current-month { #}
+{#            background-color: #FFC107; #}
+{#            color: rgba(0, 0, 0, 0.8);#}
+{#        }#}
+{#        .count-past-month { #}
+{#            background-color: #EF4444; #}
+{#        }#}
+{#        .count-completed { #}
+{#            background-color: #10B981; #}
+{#        }#}
+{#        .count-future-month { #}
+{#            background-color: #3B82F6; #}
+{#        }#}
+{#        #}
+{#        /* Task Count Badge */#}
+{#        .task-count {#}
+{#            background-color: var(--primary);#}
+{#            color: white;#}
+{#            padding: 3px 8px;#}
+{#            border-radius: 20px;#}
+{#            font-size: 12px;#}
+{#            font-weight: 600;#}
+{#        }#}
+{#        #}
+{#        /* Task Popup */#}
+{#        .task-popup {#}
+{#            display: none;#}
+{#            position: absolute;#}
+{#            top: calc(100% + 5px);#}
+{#            left: 0;#}
+{#            background: white;#}
+{#            border-radius: 8px;#}
+{#            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);#}
+{#            padding: 16px;#}
+{#            z-index: 1000;#}
+{#            min-width: 260px;#}
+{#            text-align: left;#}
+{#            border: 1px solid #e2e8f0;#}
+{#        }#}
+{#        #}
+{#        .popup-header {#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#            margin-bottom: 12px;#}
+{#            padding-bottom: 12px;#}
+{#            border-bottom: 1px solid #e2e8f0;#}
+{#        }#}
+{#        #}
+{#        .popup-title {#}
+{#            font-weight: 600;#}
+{#            font-size: 15px;#}
+{#            color: var(--dark);#}
+{#        }#}
+{#        #}
+{#        .popup-item {#}
+{#            margin-bottom: 12px;#}
+{#        }#}
+{#        #}
+{#        .popup-label {#}
+{#            font-size: 12px;#}
+{#            color: var(--gray);#}
+{#            margin-bottom: 4px;#}
+{#        }#}
+{#        #}
+{#        .popup-value {#}
+{#            font-size: 14px;#}
+{#            font-weight: 500;#}
+{#            color: var(--dark);#}
+{#        }#}
+{#        #}
+{#        .popup-progress {#}
+{#            font-size: 18px;#}
+{#            font-weight: 700;#}
+{#        }#}
+{#        #}
+{#        /* Multi-task Items */#}
+{#        .multi-tasks {#}
+{#            max-height: 200px;#}
+{#            overflow-y: auto;#}
+{#        }#}
+{#        #}
+{#        .multi-task-item {#}
+{#            padding: 10px 0;#}
+{#            border-bottom: 1px solid #e2e8f0;#}
+{#        }#}
+{#        #}
+{#        .multi-task-item:last-child {#}
+{#            border-bottom: none;#}
+{#        }#}
+{#        #}
+{#        .task-no-data {#}
+{#            color: var(--gray);#}
+{#            text-align: center;#}
+{#            font-style: italic;#}
+{#            width: 100%;#}
+{#            height: 100%;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#        }#}
+{#        #}
+{#        /* Additional style to ensure clean rendering */#}
+{#        .table-responsive {#}
+{#            overflow-x: auto;#}
+{#            margin-bottom: 0;#}
+{#        }#}
+{#        #}
+{#        /* Responsive Adjustments */#}
+{#        @media (max-width: 768px) {#}
+{#            .kpi-cards {#}
+{#                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));#}
+{#            }#}
+{#            #}
+{#            .welcome-area {#}
+{#                flex-direction: column;#}
+{#                align-items: flex-start;#}
+{#            }#}
+{#            #}
+{#            .view-tab {#}
+{#                padding: 10px 15px;#}
+{#                font-size: 13px;#}
+{#            }#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="dashboard-container">#}
+{#        <!-- Dashboard Header -->#}
+{#        <div class="dashboard-header">#}
+{#            <div class="welcome-area">#}
+{#                <div class="welcome-message">#}
+{#                    <h1>Добро пожаловать, Клиент</h1>#}
+{#                    <p>Текущий статус вашего проекта: <strong>{{ job.title }}</strong></p>#}
+{#                </div>#}
+{#                <div class="view-tabs">#}
+{#                    <button class="view-tab active" id="list-view-btn">#}
+{#                        <i class="fas fa-list-ul"></i> Дополнительные задачи#}
+{#                    </button>#}
+{#                    {% if show_follow_tasks %}#}
+{#                    <button class="view-tab" id="sheet-view-btn">#}
+{#                        <i class="fas fa-table"></i> Задачи дорожной карты#}
+{#                    </button>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        #}
+{#        <!-- Project Summary Section -->#}
+{#        <div class="project-summary">#}
+{#            <h2 class="summary-title">#}
+{#                <i class="fas fa-chart-line"></i> Обзор проекта#}
+{#            </h2>#}
+{#            <div class="kpi-cards">#}
+{#                <!-- Budget Card -->#}
+{#                <div class="kpi-card">#}
+{#                    <div class="kpi-icon kpi-primary">#}
+{#                        <i class="fas fa-dollar-sign"></i>#}
+{#                    </div>#}
+{#                    <div class="kpi-value">${{ job.over_all_income|floatformat:0 }}</div>#}
+{#                    <div class="kpi-label">Текущий платеж</div>#}
+{#                </div>#}
+{#                #}
+{#                <!-- Progress Card -->#}
+{#                <div class="kpi-card">#}
+{#                    <div class="kpi-icon kpi-success">#}
+{#                        <i class="fas fa-tasks"></i>#}
+{#                    </div>#}
+{#                    <div class="kpi-value">{{ job.get_overall_progress }}%</div>#}
+{#                    <div class="kpi-label">Общий прогресс</div>#}
+{#                </div>#}
+{#                #}
+{#                <!-- Tasks Completed Card -->#}
+{#                <div class="kpi-card">#}
+{#                    <div class="kpi-icon kpi-warning">#}
+{#                        <i class="fas fa-check-circle"></i>#}
+{#                    </div>#}
+{#                    <div class="kpi-value">{{ job.get_completed_tasks_count }}</div>#}
+{#                    <div class="kpi-label">Завершено задач</div>#}
+{#                </div>#}
+{#                #}
+{#                <!-- Time Remaining Card - Updated -->#}
+{#                <div class="kpi-card">#}
+{#                    <div class="kpi-icon kpi-info">#}
+{#                        <i class="fas fa-calendar-alt"></i>#}
+{#                    </div>#}
+{#                    <div class="deadline-container">#}
+{#                        <div class="kpi-value">{{ job.get_days_remaining }}</div>#}
+{#                        <div class="kpi-label">Дней осталось</div>#}
+{#                        {% if formatted_latest_deadline %}#}
+{#                        <div class="deadline-date">#}
+{#                            До <span>{{ formatted_latest_deadline }}</span>#}
+{#                        </div>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        #}
+{#        <!-- Hours Tracking Section -->#}
+{#        <div class="hours-tracking">#}
+{#            <div class="hours-card">#}
+{#                <div class="hours-header">#}
+{#                    <h2 class="hours-title">#}
+{#                        <i class="fas fa-clock"></i> Отслеживание часов#}
+{#                    </h2>#}
+{#                    <div class="hours-counter">#}
+{#                        <span class="current-hours">{{ total_simple_hours }}</span>#}
+{#                        <span class="divider">/</span>#}
+{#                        <span class="max-hours">{{ max_hours }}</span>#}
+{#                        <span class="hours-unit">часов</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#                #}
+{#                <div class="hours-progress-container">#}
+{#                    <div class="hours-progress-bar" style="width: {{ hours_percentage }}%"></div>#}
+{#                </div>#}
+{#                #}
+{#                <div class="hours-footer">#}
+{#                    <div class="hours-status">#}
+{#                        {% if total_simple_hours <= max_hours %}#}
+{#                        <span class="status-indicator under-budget">#}
+{#                            <i class="fas fa-check-circle"></i> В рамках бюджета#}
+{#                        </span>#}
+{#                        {% else %}#}
+{#                        <span class="status-indicator over-budget">#}
+{#                            <i class="fas fa-exclamation-circle"></i> Превышен лимит#}
+{#                        </span>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                    <div class="hours-remaining">#}
+{#                        {% if total_simple_hours <= max_hours %}#}
+{#                        <span>Осталось {{ max_hours|add:"-"|add:total_simple_hours }} часов</span>#}
+{#                        {% else %}#}
+{#                        <span>Превышение на {{ total_simple_hours|add:"-"|add:max_hours }} часов</span>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        #}
+{#        <!-- List View (Simple Tasks Only) -->#}
+{#        <div id="list-view" class="task-view">#}
+{#            <div class="summary-title ps-3 pt-2">#}
+{#                <i class="fas fa-tasks"></i> Простые задачи#}
+{#            </div>#}
+{#            <table class="task-table">#}
+{#                <thead>#}
+{#                    <tr>#}
+{#                        <th style="width: 40%">Описание задачи</th>#}
+{#                        <th style="width: 15%">Часы</th>#}
+{#                        <th style="width: 15%">Статус</th>#}
+{#                        <th style="width: 20%">Прогресс</th>#}
+{#                        <th style="width: 10%">Срок сдачи</th>#}
+{#                    </tr>#}
+{#                </thead>#}
+{#                <tbody id="list-view-body">#}
+{#                    <!-- JS will populate this with only SIMPLE tasks -->#}
+{#                </tbody>#}
+{#            </table>#}
+{#        </div>#}
+{#        #}
+{#        <!-- Sheet View (Timeline View) for Recurring Tasks with Color Coding -->#}
+{#        {% if show_follow_tasks %}#}
+{#        <div id="sheet-view" class="sheet-container" style="display: none;">#}
+{#            <div class="summary-title ps-3 pt-2">#}
+{#                <i class="fas fa-calendar-alt"></i> График повторяющихся задач#}
+{#            </div>#}
+{#            <table class="sheet-table">#}
+{#                <thead>#}
+{#                <tr>#}
+{#                    <th>Задача</th>#}
+{#                    {% for month in all_months %}#}
+{#                        <th>{{ month }}</th>#}
+{#                    {% endfor %}#}
+{#                </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{#                {% for row in task_matrix %}#}
+{#                    <tr>#}
+{#                        <td>{{ row.base_name }}</td>#}
+{#                        {% for cell in row.cells %}#}
+{#                            <td>#}
+{#                                {% if not cell.empty %}#}
+{#                                    <div class="task-cell #}
+{#                                    {% if cell.month_type == 'completed' %}cell-completed#}
+{#                                    {% elif cell.month_type == 'current' %}cell-current-month#}
+{#                                    {% elif cell.month_type == 'past' %}cell-past-month#}
+{#                                    {% else %}cell-future-month#}
+{#                                    {% endif %}"#}
+{#                                         onclick="toggleTaskPopup('popup-{{ row.base_name|slugify }}-{{ forloop.counter }}')">#}
+{##}
+{#                                        {% if cell.tasks|length == 1 %}#}
+{#                                            <div class="cell-progress #}
+{#                                        {% if cell.month_type == 'completed' %}progress-completed#}
+{#                                        {% elif cell.month_type == 'current' %}progress-current-month#}
+{#                                        {% elif cell.month_type == 'past' %}progress-past-month#}
+{#                                        {% else %}progress-future-month#}
+{#                                        {% endif %}">#}
+{#                                                {{ cell.tasks.0.progress }}%#}
+{#                                            </div>#}
+{#                                        {% else %}#}
+{#                                            <span class="task-count #}
+{#                                        {% if cell.month_type == 'completed' %}count-completed#}
+{#                                        {% elif cell.month_type == 'current' %}count-current-month#}
+{#                                        {% elif cell.month_type == 'past' %}count-past-month#}
+{#                                        {% else %}count-future-month#}
+{#                                        {% endif %}">#}
+{#                                        {{ cell.tasks|length }}#}
+{#                                    </span>#}
+{#                                        {% endif %}#}
+{##}
+{#                                        <!-- Task Popup -->#}
+{#                                        <div id="popup-{{ row.base_name|slugify }}-{{ forloop.counter }}" class="task-popup">#}
+{#                                            {% if cell.tasks|length == 1 %}#}
+{#                                                <!-- Single task popup -->#}
+{#                                                <div class="popup-header">#}
+{#                                                    <div class="popup-title">{{ cell.tasks.0.title }}</div>#}
+{#                                                    <div class="popup-progress #}
+{#                                                {% if cell.month_type == 'completed' %}progress-completed#}
+{#                                                {% elif cell.month_type == 'current' %}progress-current-month#}
+{#                                                {% elif cell.month_type == 'past' %}progress-past-month#}
+{#                                                {% else %}progress-future-month#}
+{#                                                {% endif %}">#}
+{#                                                        {{ cell.tasks.0.progress }}%#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{##}
+{#                                                <div class="popup-item">#}
+{#                                                    <div class="popup-label">Срок сдачи</div>#}
+{#                                                    <div class="popup-value">{{ cell.tasks.0.deadline|date:"d.m.Y" }}</div>#}
+{#                                                </div>#}
+{##}
+{#                                                <div class="popup-item">#}
+{#                                                    <div class="popup-label">Бюджет</div>#}
+{#                                                    <div class="popup-value">${{ cell.tasks.0.money_for_task|floatformat:2 }}</div>#}
+{#                                                </div>#}
+{##}
+{#                                                <div class="popup-item">#}
+{#                                                    <div class="popup-label">Часы</div>#}
+{#                                                    <div class="popup-value">{{ cell.tasks.0.hours }} часов</div>#}
+{#                                                </div>#}
+{##}
+{#                                                <div class="popup-item">#}
+{#                                                    <div class="popup-label">Исполнитель</div>#}
+{#                                                    <div class="popup-value">#}
+{#                                                        {% for user in cell.tasks.0.assigned_users.all %}#}
+{#                                                            {{ user.email }}{% if not forloop.last %}, {% endif %}#}
+{#                                                        {% empty %}#}
+{#                                                            <span class="text-muted">Не назначен</span>#}
+{#                                                        {% endfor %}#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            {% else %}#}
+{#                                                <!-- Multiple tasks popup -->#}
+{#                                                <div class="popup-header">#}
+{#                                                    <div class="popup-title">{{ cell.tasks|length }} задач</div>#}
+{#                                                </div>#}
+{##}
+{#                                                <div class="multi-tasks">#}
+{#                                                    {% for task in cell.tasks %}#}
+{#                                                        <div class="multi-task-item">#}
+{#                                                            <div class="popup-item">#}
+{#                                                                <div class="popup-label">Задача</div>#}
+{#                                                                <div class="popup-value">{{ task.title }}</div>#}
+{#                                                            </div>#}
+{##}
+{#                                                            <div class="d-flex justify-content-between align-items-center">#}
+{#                                                                <div class="popup-label">Прогресс</div>#}
+{#                                                                <div class="popup-progress #}
+{#                                                        {% if cell.month_type == 'completed' %}progress-completed#}
+{#                                                        {% elif cell.month_type == 'current' %}progress-current-month#}
+{#                                                        {% elif cell.month_type == 'past' %}progress-past-month#}
+{#                                                        {% else %}progress-future-month#}
+{#                                                        {% endif %}">#}
+{#                                                                    {{ task.progress }}%#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{##}
+{#                                                            <div class="popup-value">{{ task.deadline|date:"d.m.Y" }}</div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div class="popup-item">#}
+{#                                                            <div class="popup-label">Бюджет</div>#}
+{#                                                            <div class="popup-value">${{ task.money_for_task|floatformat:2 }}</div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div class="popup-item">#}
+{#                                                            <div class="popup-label">Часы</div>#}
+{#                                                            <div class="popup-value">{{ task.hours }} часов</div>#}
+{#                                                        </div>#}
+{#                                                        </div>#}
+{#                                                    {% endfor %}#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+{#                                    </div>#}
+{#                                {% else %}#}
+{#                                <div class="task-no-data">—</div>#}
+{#                                {% endif %}#}
+{#                            </td>#}
+{#                            {% endfor %}#}
+{#                        </tr>#}
+{#                        {% endfor %}#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{##}
+{#    <!-- Scripts -->#}
+{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>#}
+{#    <script>#}
+{#        // Parse tasks data (this will only contain SIMPLE tasks now)#}
+{#        const tasksData = {{ tasks|safe }};#}
+{#        #}
+{#        document.addEventListener('DOMContentLoaded', function() {#}
+{#            // Debug: log the tasks data to console#}
+{#            console.log("Получены данные задач:", tasksData);#}
+{#            #}
+{#            // Populate list view with only SIMPLE tasks#}
+{#            populateListView();#}
+{#            #}
+{#            // View toggle functionality#}
+{#            const listViewBtn = document.getElementById('list-view-btn');#}
+{#            const sheetViewBtn = document.getElementById('sheet-view-btn');#}
+{#            const listView = document.getElementById('list-view');#}
+{#            const sheetView = document.getElementById('sheet-view');#}
+{#            #}
+{#            if (listViewBtn && sheetViewBtn) {#}
+{#                listViewBtn.addEventListener('click', function() {#}
+{#                    listView.style.display = 'block';#}
+{#                    if (sheetView) sheetView.style.display = 'none';#}
+{#                    listViewBtn.classList.add('active');#}
+{#                    sheetViewBtn.classList.remove('active');#}
+{#                });#}
+{#                #}
+{#                if (sheetViewBtn) {#}
+{#                    sheetViewBtn.addEventListener('click', function() {#}
+{#                        listView.style.display = 'none';#}
+{#                        if (sheetView) sheetView.style.display = 'block';#}
+{#                        sheetViewBtn.classList.add('active');#}
+{#                        listViewBtn.classList.remove('active');#}
+{#                    });#}
+{#                }#}
+{#            }#}
+{#            #}
+{#            // Close popups when clicking elsewhere#}
+{#            document.addEventListener('click', function(event) {#}
+{#                if (!event.target.closest('.task-cell')) {#}
+{#                    document.querySelectorAll('.task-popup').forEach(popup => {#}
+{#                        popup.style.display = 'none';#}
+{#                    });#}
+{#                }#}
+{#            });#}
+{#        });#}
+{#        #}
+{#        // Function to populate the list view with SIMPLE tasks including hours#}
+{#        function populateListView() {#}
+{#            const tableBody = document.getElementById('list-view-body');#}
+{#            if (!tableBody) return;#}
+{#            #}
+{#            if (!tasksData || tasksData.length === 0) {#}
+{#                // If no SIMPLE tasks, show a message#}
+{#                const row = document.createElement('tr');#}
+{#                const cell = document.createElement('td');#}
+{#                cell.colSpan = 5; // Updated to 5 columns with hours#}
+{#                cell.className = 'text-center py-4';#}
+{#                cell.innerHTML = 'Простых задач для этого проекта не найдено.';#}
+{#                row.appendChild(cell);#}
+{#                tableBody.appendChild(row);#}
+{#                return;#}
+{#            }#}
+{#            #}
+{#            tasksData.forEach(task => {#}
+{#                const row = document.createElement('tr');#}
+{#                #}
+{#                // Task title cell#}
+{#                const titleCell = document.createElement('td');#}
+{#                titleCell.innerHTML = `#}
+{#                    <div class="task-title">${task.title}</div>#}
+{#                    <div class="mt-1">#}
+{#                        <span class="task-badge badge-regular">#}
+{#                            Простая задача#}
+{#                        </span>#}
+{#                    </div>#}
+{#                `;#}
+{#                row.appendChild(titleCell);#}
+{#                #}
+{#                // Hours cell - NEW#}
+{#                const hoursCell = document.createElement('td');#}
+{#                hoursCell.innerHTML = `#}
+{#                    <div class="d-flex align-items-center">#}
+{#                        <span class="task-hours">#}
+{#                            <i class="fas fa-clock me-1"></i> ${task.hours}ч#}
+{#                        </span>#}
+{#                    </div>#}
+{#                `;#}
+{#                row.appendChild(hoursCell);#}
+{#                #}
+{#                // Status cell#}
+{#                const statusCell = document.createElement('td');#}
+{#                let statusHTML = '';#}
+{#                #}
+{#                if (task.progress === 100) {#}
+{#                    statusHTML = '<span style="color: var(--success);"><i class="fas fa-check-circle me-1"></i> Завершено</span>';#}
+{#                } else if (task.progress > 0) {#}
+{#                    statusHTML = '<span style="color: var(--primary);"><i class="fas fa-spinner me-1"></i> В процессе</span>';#}
+{#                } else {#}
+{#                    statusHTML = '<span style="color: var(--gray);"><i class="fas fa-clock me-1"></i> Не начато</span>';#}
+{#                }#}
+{#                #}
+{#                statusCell.innerHTML = statusHTML;#}
+{#                row.appendChild(statusCell);#}
+{#                #}
+{#                // Progress cell#}
+{#                const progressCell = document.createElement('td');#}
+{#                progressCell.innerHTML = `#}
+{#                    <div class="progress-container ${task.progress === 100 ? 'progress-complete' : ''}">#}
+{#                        <div class="progress-bar" style="width: ${task.progress}%;"></div>#}
+{#                    </div>#}
+{#                    <div class="progress-value">${task.progress}%</div>#}
+{#                `;#}
+{#                row.appendChild(progressCell);#}
+{#                #}
+{#                // Deadline cell#}
+{#                const deadlineCell = document.createElement('td');#}
+{#                if (task.deadline) {#}
+{#                    const deadlineDate = new Date(task.deadline);#}
+{#                    const formattedDate = deadlineDate.toLocaleDateString('ru-RU', { #}
+{#                        day: 'numeric', #}
+{#                        month: 'numeric', #}
+{#                        year: 'numeric' #}
+{#                    });#}
+{#                    deadlineCell.textContent = formattedDate;#}
+{#                } else {#}
+{#                    deadlineCell.innerHTML = '<span class="text-muted">Не задан</span>';#}
+{#                }#}
+{#                row.appendChild(deadlineCell);#}
+{#                #}
+{#                // Add the row to the table#}
+{#                tableBody.appendChild(row);#}
+{#            });#}
+{#        }#}
+{#        #}
+{#        // Function to toggle task popup visibility#}
+{#        function toggleTaskPopup(popupId) {#}
+{#            const popup = document.getElementById(popupId);#}
+{#            #}
+{#            // Close any open popups first#}
+{#            document.querySelectorAll('.task-popup').forEach(p => {#}
+{#                if (p.id !== popupId) {#}
+{#                    p.style.display = 'none';#}
+{#                }#}
+{#            });#}
+{#            #}
+{#            // Toggle this popup#}
+{#            if (popup) {#}
+{#                popup.style.display = popup.style.display === 'block' ? 'none' : 'block';#}
+{#            }#}
+{#            #}
+{#            // Prevent event propagation#}
+{#            event.stopPropagation();#}
+{#        }#}
+{#    </script>#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления проектами</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #ebe9ff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.5;
+        }
+        
+        .dashboard-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 32px 15px;
+        }
+        
+        /* Header and Welcome Area */
+        .dashboard-header {
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .welcome-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .welcome-message h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .welcome-message p {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        /* Tab Buttons - Moved to bottom */
+        .tabs-container {
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        
+        .view-tabs {
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            width: fit-content;
+        }
+        
+        .view-tab {
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            position: relative;
+        }
+        
+        .view-tab.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+        
+        .view-tab:hover:not(.active) {
+            background-color: #f8fafc;
+        }
+        
+        .view-tab i {
+            margin-right: 6px;
+        }
+        
+        .project-summary {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        .summary-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .summary-title i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        /* KPI Cards */
+        .kpi-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .kpi-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .kpi-primary {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .kpi-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .kpi-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .kpi-info {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+        
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .kpi-label {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        /* Days Remaining Card with Deadline */
+        .deadline-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .deadline-date {
+            font-size: 14px;
+            color: var(--info);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .deadline-date span {
+            font-style: italic;
+        }
+        
+        /* Hours Tracking Styles */
+        .hours-tracking {
+            margin-bottom: 28px;
+        }
+
+        .hours-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .hours-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .hours-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .hours-title i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .hours-counter {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .current-hours {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .divider {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--gray);
+            margin: 0 4px;
+        }
+
+        .max-hours {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .hours-unit {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--gray);
+            margin-left: 6px;
+        }
+
+        .hours-progress-container {
+            height: 12px;
+            background-color: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .hours-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4f46e5, #818cf8);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+
+        .hours-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hours-status {
+            font-weight: 500;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .under-budget {
+            color: var(--success);
+        }
+
+        .over-budget {
+            color: var(--danger);
+        }
+
+        .hours-remaining {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Add hours column to task table */
+        .task-hours {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        /* Task Tables */
+        .task-view {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+        }
+        
+        .task-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .task-table th {
+            background-color: #f8fafc;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .task-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        
+        .task-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .task-title {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .task-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .badge-regular {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        
+        .badge-recurring {
+            background-color: #dbeafe;
+            color: #3b82f6;
+        }
+        
+        /* Custom Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .progress-complete .progress-bar {
+            background-color: var(--success);
+        }
+        
+        .progress-value {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: right;
+            color: var(--dark);
+            margin-top: 6px;
+        }
+        
+        /* Sheet Table Styles - Fixed Cell Sizes */
+        .sheet-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        .sheet-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        
+        .sheet-table th, 
+        .sheet-table td {
+            padding: 0;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            width: 120px;
+            height: 80px;
+            overflow: hidden;
+        }
+        
+        .sheet-table th {
+            background-color: #f8fafc;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 10px;
+            white-space: nowrap;
+            height: 60px;
+            vertical-align: middle;
+        }
+        
+        .sheet-table th:first-child,
+        .sheet-table td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background-color: #f8fafc;
+            text-align: left;
+            font-weight: 500;
+            width: 180px;
+            padding: 10px 15px;
+        }
+        
+        /* Task Cell Styles */
+        .task-cell {
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .task-cell:hover {
+            background-color: #f8fafc;
+        }
+        
+        .cell-progress {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Time-based cell colors */
+        .cell-current-month { background-color: rgba(255, 193, 7, 0.15); }  /* Yellow */
+        .cell-past-month { background-color: rgba(239, 68, 68, 0.15); }     /* Red */
+        .cell-completed { background-color: rgba(16, 185, 129, 0.15); }     /* Green */
+        .cell-future-month { background-color: rgba(59, 130, 246, 0.15); }  /* Blue */
+
+        /* Text colors to match */
+        .progress-current-month { color: #FFC107; }  /* Yellow */
+        .progress-past-month { color: #EF4444; }     /* Red */
+        .progress-completed { color: #10B981; }      /* Green */
+        .progress-future-month { color: #3B82F6; }   /* Blue */
+
+        /* Task count badges with color coding */
+        .count-current-month { 
+            background-color: #FFC107; 
+            color: rgba(0, 0, 0, 0.8);
+        }
+        .count-past-month { 
+            background-color: #EF4444; 
+        }
+        .count-completed { 
+            background-color: #10B981; 
+        }
+        .count-future-month { 
+            background-color: #3B82F6; 
+        }
+        
+        /* Task Count Badge */
+        .task-count {
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Task Popup */
+        .task-popup {
+            display: none;
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            z-index: 1000;
+            min-width: 260px;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .popup-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--dark);
+        }
+        
+        .popup-item {
+            margin-bottom: 12px;
+        }
+        
+        .popup-label {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+        
+        .popup-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .popup-progress {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        /* Multi-task Items */
+        .multi-tasks {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .multi-task-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .multi-task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-no-data {
+            color: var(--gray);
+            text-align: center;
+            font-style: italic;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Additional style to ensure clean rendering */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 0;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .kpi-cards {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .welcome-area {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .view-tab {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="welcome-area">
+                <div class="welcome-message">
+                    <h1>Добро пожаловать, Клиент</h1>
+                    <p>Текущий статус вашего проекта: <strong>{{ job.title }}</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project Summary Section -->
+        <div class="project-summary">
+            <h2 class="summary-title">
+                <i class="fas fa-chart-line"></i> Обзор проекта
+            </h2>
+            <div class="kpi-cards">
+                <!-- Budget Card -->
+                <div class="kpi-card">
+                    <div class="kpi-icon kpi-primary">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-value">${{ job.over_all_income|floatformat:0 }}</div>
+                    <div class="kpi-label">Текущий платеж</div>
+                </div>
+                
+                <!-- Progress Card -->
+                <div class="kpi-card">
+                    <div class="kpi-icon kpi-success">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="kpi-value">{{ job.get_overall_progress }}%</div>
+                    <div class="kpi-label">Общий прогресс</div>
+                </div>
+                
+                <!-- Tasks Completed Card -->
+                <div class="kpi-card">
+                    <div class="kpi-icon kpi-warning">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="kpi-value">{{ job.get_completed_tasks_count }}</div>
+                    <div class="kpi-label">Завершено задач</div>
+                </div>
+            
+            
+
+                
+                <!-- Time Remaining Card - Updated -->
+                <div class="kpi-card">
+                    <div class="kpi-icon kpi-info">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="deadline-container">
+                        <div class="kpi-value">{{ job.get_days_remaining }}</div>
+                        <div class="kpi-label">Дней осталось</div>
+                        {% if formatted_latest_deadline %}
+                        <div class="deadline-date">
+                            До <span>{{ formatted_latest_deadline }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hours Tracking Section -->
+        <div class="hours-tracking">
+            <div class="hours-card">
+                <div class="hours-header">
+                    <h2 class="hours-title">
+                        <i class="fas fa-clock"></i> Отслеживание часов
+                    </h2>
+                    <div class="hours-counter">
+                        <span class="current-hours">{{ total_simple_hours }}</span>
+                        <span class="divider">/</span>
+                        <span class="max-hours">{{ max_hours }}</span>
+                        <span class="hours-unit">часов</span>
+                    </div>
+                </div>
+                
+                <div class="hours-progress-container">
+                    <div class="hours-progress-bar" style="width: {{ hours_percentage }}%"></div>
+                </div>
+                
+                <div class="hours-footer">
+                    <div class="hours-status">
+                        {% if total_simple_hours <= max_hours %}
+                        <span class="status-indicator under-budget">
+                            <i class="fas fa-check-circle"></i> В рамках бюджета
+                        </span>
+                        {% else %}
+                        <span class="status-indicator over-budget">
+                            <i class="fas fa-exclamation-circle"></i> Превышен лимит
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="hours-remaining">
+                        {% if total_simple_hours <= max_hours %}
+                        <span>Осталось {{ max_hours|add:"-"|add:total_simple_hours }} часов</span>
+                        {% else %}
+                        <span>Превышение на {{ total_simple_hours|add:"-"|add:max_hours }} часов</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Moved: Tabs container to appear here before the task views -->
+        <div class="tabs-container">
+            <div class="view-tabs">
+                <button class="view-tab active" id="list-view-btn">
+                    <i class="fas fa-list-ul"></i> Дополнительные задачи
+                </button>
+                {% if show_follow_tasks %}
+                <button class="view-tab" id="sheet-view-btn">
+                    <i class="fas fa-table"></i> Задачи дорожной карты
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- List View (Simple Tasks Only) -->
+        <div id="list-view" class="task-view">
+            <div class="summary-title ps-3 pt-2">
+                <i class="fas fa-tasks"></i> Простые задачи
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%">Описание задачи</th>
+                        <th style="width: 15%">Часы</th>
+                        <th style="width: 15%">Статус</th>
+                        <th style="width: 20%">Прогресс</th>
+                        <th style="width: 10%">Срок сдачи</th>
+                    </tr>
+                </thead>
+                <tbody id="list-view-body">
+                    <!-- JS will populate this with only SIMPLE tasks -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Sheet View (Timeline View) for Recurring Tasks with Color Coding -->
+        {% if show_follow_tasks %}
+        <div id="sheet-view" class="sheet-container" style="display: none;">
+            <div class="summary-title ps-3 pt-2">
+                <i class="fas fa-calendar-alt"></i> График повторяющихся задач
+            </div>
+            <table class="sheet-table">
+                <thead>
+                <tr>
+                    <th>Задача</th>
+                    {% for month in all_months %}
+                        <th>{{ month }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in task_matrix %}
+                    <tr>
+                        <td>{{ row.base_name }}</td>
+                        {% for cell in row.cells %}
+                            <td>
+                                {% if not cell.empty %}
+                                    <div class="task-cell 
+                                    {% if cell.month_type == 'completed' %}cell-completed
+                                    {% elif cell.month_type == 'current' %}cell-current-month
+                                    {% elif cell.month_type == 'past' %}cell-past-month
+                                    {% else %}cell-future-month
+                                    {% endif %}"
+                                         onclick="toggleTaskPopup('popup-{{ row.base_name|slugify }}-{{ forloop.counter }}')">
+
+                                        {% if cell.tasks|length == 1 %}
+                                            <div class="cell-progress 
+                                        {% if cell.month_type == 'completed' %}progress-completed
+                                        {% elif cell.month_type == 'current' %}progress-current-month
+                                        {% elif cell.month_type == 'past' %}progress-past-month
+                                        {% else %}progress-future-month
+                                        {% endif %}">
+                                                {{ cell.tasks.0.progress }}%
+                                            </div>
+                                        {% else %}
+                                            <span class="task-count 
+                                        {% if cell.month_type == 'completed' %}count-completed
+                                        {% elif cell.month_type == 'current' %}count-current-month
+                                        {% elif cell.month_type == 'past' %}count-past-month
+                                        {% else %}count-future-month
+                                        {% endif %}">
+                                        {{ cell.tasks|length }}
+                                    </span>
+                                        {% endif %}
+
+                                        <!-- Task Popup -->
+                                        <div id="popup-{{ row.base_name|slugify }}-{{ forloop.counter }}" class="task-popup">
+                                            {% if cell.tasks|length == 1 %}
+                                                <!-- Single task popup -->
+                                                <div class="popup-header">
+                                                    <div class="popup-title">{{ cell.tasks.0.title }}</div>
+                                                    <div class="popup-progress 
+                                                {% if cell.month_type == 'completed' %}progress-completed
+                                                {% elif cell.month_type == 'current' %}progress-current-month
+                                                {% elif cell.month_type == 'past' %}progress-past-month
+                                                {% else %}progress-future-month
+                                                {% endif %}">
+                                                        {{ cell.tasks.0.progress }}%
+                                                    </div>
+                                                </div>
+
+                                                <div class="popup-item">
+                                                    <div class="popup-label">Срок сдачи</div>
+                                                    <div class="popup-value">{{ cell.tasks.0.deadline|date:"d.m.Y" }}</div>
+                                                </div>
+
+                                                <div class="popup-item">
+                                                    <div class="popup-label">Бюджет</div>
+                                                    <div class="popup-value">${{ cell.tasks.0.money_for_task|floatformat:2 }}</div>
+                                                </div>
+
+                                                <div class="popup-item">
+                                                    <div class="popup-label">Часы</div>
+                                                    <div class="popup-value">{{ cell.tasks.0.hours }} часов</div>
+                                                </div>
+
+                                                <div class="popup-item">
+                                                    <div class="popup-label">Исполнитель</div>
+                                                    <div class="popup-value">
+                                                        {% for user in cell.tasks.0.assigned_users.all %}
+                                                            {{ user.email }}{% if not forloop.last %}, {% endif %}
+                                                        {% empty %}
+                                                            <span class="text-muted">Не назначен</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <!-- Multiple tasks popup -->
+                                                <div class="popup-header">
+                                                    <div class="popup-title">{{ cell.tasks|length }} задач</div>
+                                                </div>
+
+                                                <div class="multi-tasks">
+                                                    {% for task in cell.tasks %}
+                                                        <div class="multi-task-item">
+                                                            <div class="popup-item">
+                                                                <div class="popup-label">Задача</div>
+                                                                <div class="popup-value">{{ task.title }}</div>
+                                                            </div>
+
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="popup-label">Прогресс</div>
+                                                                <div class="popup-progress 
+                                                        {% if cell.month_type == 'completed' %}progress-completed
+                                                        {% elif cell.month_type == 'current' %}progress-current-month
+                                                        {% elif cell.month_type == 'past' %}progress-past-month
+                                                        {% else %}progress-future-month
+                                                        {% endif %}">
+                                                                    {{ task.progress }}%
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="popup-value">{{ task.deadline|date:"d.m.Y" }}</div>
+                                                        </div>
+
+                                                        <div class="popup-item">
+                                                            <div class="popup-label">Бюджет</div>
+                                                            <div class="popup-value">${{ task.money_for_task|floatformat:2 }}</div>
+                                                        </div>
+
+                                                        <div class="popup-item">
+                                                            <div class="popup-label">Часы</div>
+                                                            <div class="popup-value">{{ task.hours }} часов</div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                <div class="task-no-data">—</div>
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Parse tasks data (this will only contain SIMPLE tasks now)
+        const tasksData = {{ tasks|safe }};
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debug: log the tasks data to console
+            console.log("Получены данные задач:", tasksData);
+            
+            // Populate list view with only SIMPLE tasks
+            populateListView();
+            
+            // View toggle functionality
+            const listViewBtn = document.getElementById('list-view-btn');
+            const sheetViewBtn = document.getElementById('sheet-view-btn');
+            const listView = document.getElementById('list-view');
+            const sheetView = document.getElementById('sheet-view');
+            
+            if (listViewBtn && sheetViewBtn) {
+                listViewBtn.addEventListener('click', function() {
+                    listView.style.display = 'block';
+                    if (sheetView) sheetView.style.display = 'none';
+                    listViewBtn.classList.add('active');
+                    sheetViewBtn.classList.remove('active');
+                });
+                
+                if (sheetViewBtn) {
+                    sheetViewBtn.addEventListener('click', function() {
+                        listView.style.display = 'none';
+                        if (sheetView) sheetView.style.display = 'block';
+                        sheetViewBtn.classList.add('active');
+                        listViewBtn.classList.remove('active');
+                    });
+                }
+            }
+            
+            // Close popups when clicking elsewhere
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.task-cell')) {
+                    document.querySelectorAll('.task-popup').forEach(popup => {
+                        popup.style.display = 'none';
+                    });
+                }
+            });
+        });
+        
+        // Function to populate the list view with SIMPLE tasks including hours
+        function populateListView() {
+            const tableBody = document.getElementById('list-view-body');
+            if (!tableBody) return;
+            
+            if (!tasksData || tasksData.length === 0) {
+                // If no SIMPLE tasks, show a message
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 5; // Updated to 5 columns with hours
+                cell.className = 'text-center py-4';
+                cell.innerHTML = 'Простых задач для этого проекта не найдено.';
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+                return;
+            }
+            
+            tasksData.forEach(task => {
+                const row = document.createElement('tr');
+                
+                // Task title cell
+                const titleCell = document.createElement('td');
+                titleCell.innerHTML = `
+                    <div class="task-title">${task.title}</div>
+                    <div class="mt-1">
+                        <span class="task-badge badge-regular">
+                            Простая задача
+                        </span>
+                    </div>
+                `;
+                row.appendChild(titleCell);
+                
+                // Hours cell - NEW
+                const hoursCell = document.createElement('td');
+                hoursCell.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <span class="task-hours">
+                            <i class="fas fa-clock me-1"></i> ${task.hours}ч
+                        </span>
+                    </div>
+                `;
+                row.appendChild(hoursCell);
+                
+                // Status cell
+                const statusCell = document.createElement('td');
+                let statusHTML = '';
+                
+                if (task.progress === 100) {
+                    statusHTML = '<span style="color: var(--success);"><i class="fas fa-check-circle me-1"></i> Завершено</span>';
+                } else if (task.progress > 0) {
+                    statusHTML = '<span style="color: var(--primary);"><i class="fas fa-spinner me-1"></i> В процессе</span>';
+                } else {
+                    statusHTML = '<span style="color: var(--gray);"><i class="fas fa-clock me-1"></i> Не начато</span>';
+                }
+                
+                statusCell.innerHTML = statusHTML;
+                row.appendChild(statusCell);
+                
+                // Progress cell
+                const progressCell = document.createElement('td');
+                progressCell.innerHTML = `
+                    <div class="progress-container ${task.progress === 100 ? 'progress-complete' : ''}">
+                        <div class="progress-bar" style="width: ${task.progress}%;"></div>
+                    </div>
+                    <div class="progress-value">${task.progress}%</div>
+                `;
+                row.appendChild(progressCell);
+                
+                // Deadline cell
+                const deadlineCell = document.createElement('td');
+                if (task.deadline) {
+                    const deadlineDate = new Date(task.deadline);
+                    const formattedDate = deadlineDate.toLocaleDateString('ru-RU', { 
+                        day: 'numeric', 
+                        month: 'numeric', 
+                        year: 'numeric' 
+                    });
+                    deadlineCell.textContent = formattedDate;
+                } else {
+                    deadlineCell.innerHTML = '<span class="text-muted">Не задан</span>';
+                }
+                row.appendChild(deadlineCell);
+                
+                // Add the row to the table
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Function to toggle task popup visibility
+        function toggleTaskPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            
+            // Close any open popups first
+            document.querySelectorAll('.task-popup').forEach(p => {
+                if (p.id !== popupId) {
+                    p.style.display = 'none';
+                }
+            });
+            
+            // Toggle this popup
+            if (popup) {
+                popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            }
+            
+            // Prevent event propagation
+            event.stopPropagation();
+        }
+    </script>
+</body>
+</html>
+
