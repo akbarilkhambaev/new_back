@@ -7,8 +7,10 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = User.EMAIL_FIELD
 
     def validate(self, attrs):
-        # Поддержка логина по email
-        attrs['username'] = attrs.get('email')
+        # Поддержка логина по email (без учета регистра)
+        email = attrs.get('email')
+        if email:
+            attrs['username'] = email.lower()
         return super().validate(attrs)
 
 class EmailTokenObtainPairView(TokenObtainPairView):
