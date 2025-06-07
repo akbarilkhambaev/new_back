@@ -21,8 +21,8 @@ import fin_app_v2
 
 urlpatterns = [
 
-path('', include('fin_app_v2.urls')),                     # Основные маршруты приложения
-    path('', include('fin_app_v2.api_urls')),             # API маршруты
-    path('', include('fin_app_v2.api_task_urls')),      # Task API маршруты
+    path('', include('fin_app_v2.urls')),                     # Основные маршруты приложения
+    path('api/', include('fin_app_v2.api_urls')),             # API маршруты
+    path('api/', include('fin_app_v2.api_task_urls')),      # Task API маршруты
     path('admin/', admin.site.urls),
 ]
