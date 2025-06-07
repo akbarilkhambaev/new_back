@@ -15,14 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-
-import fin_app_v2
+from django.urls import path, include
 
 urlpatterns = [
-
-    path('', include('fin_app_v2.urls')),                     # Основные маршруты приложения
-    path('api/', include('fin_app_v2.api_urls')),             # API маршруты
-    path('api/', include('fin_app_v2.api_task_urls')),      # Task API маршруты
+    path('', include('fin_app_v2.urls')),             # обычные HTML страницы
+    path('api/', include('fin_app_v2.api_urls')),     # все REST API включая токены
+    path('api/', include('fin_app_v2.api_task_urls')),  # задачи, обновления и т.д.
     path('admin/', admin.site.urls),
 ]

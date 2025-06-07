@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True)
-    # убираем username вообще
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields.pop('username', None)  # Убираем username из формы
+        self.fields.pop('username', None)  # удаляем поле username
 
     def validate(self, attrs):
         email = attrs.get('email')
