@@ -3,24 +3,31 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True)
+    # убираем username вообще
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop('username', None)  # Убираем username из формы
 
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
-        if email and password:
-            try:
-                user = User.objects.get(email__iexact=email)
-                attrs['username'] = user.username
-                attrs['password'] = password
-            except User.DoesNotExist:
-                raise serializers.ValidationError("No active account found with the given credentials")
-        else:
-            raise serializers.ValidationError("Must include 'email' and 'password'")
+
+        try:
+            user = User.objects.get(email__iexact=email)
+        except User.DoesNotExist:
+            raise serializers.ValidationError("No active account found with this email")
+
+        user = authenticate(username=user.username, password=password)
+        if user is None:
+            raise serializers.ValidationError("Invalid credentials")
+
+        attrs['username'] = user.username
         return super().validate(attrs)
 
 
