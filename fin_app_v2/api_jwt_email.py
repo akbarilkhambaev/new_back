@@ -10,7 +10,13 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Поддержка логина по email (без учета регистра)
         email = attrs.get('email')
         if email:
-            attrs['username'] = email.lower()
+            email = email.lower()
+            try:
+                user = User.objects.get(email__iexact=email)
+                attrs['username'] = user.username
+            except User.DoesNotExist:
+                # Не найден пользователь с таким email
+                pass
         return super().validate(attrs)
 
 class EmailTokenObtainPairView(TokenObtainPairView):
