@@ -28,10 +28,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://finprojectfordbr-master-2-production.up.railway.app',
-    'http://localhost:3000/',
-    'https://fixed-dividcrm.vercel.app/',
+    'http://localhost:3000',
+    'http://127.0.1:3000',
+    'https://fixed-dividcrm.vercel.app',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://finprojectfordbr-master-2-production.up.railway.app",
+    "https://fixed-dividcrm.vercel.app"
+]
 
 # Application definition
 
@@ -93,7 +99,7 @@ WSGI_APPLICATION = 'Fin_v2_by.wsgi.application'
 
 
 
-EST_FRAMEWORK = {
+REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
