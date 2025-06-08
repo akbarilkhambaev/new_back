@@ -141,14 +141,12 @@ REST_FRAMEWORK = {
 REDIS_URL = os.environ.get("REDIS_URL", "redis://default:awDp645JqtW6jShy!w_H*1sk0zfTcW0v@redis.railway.internal:6379")
 
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": REDIS_URL,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
     }
 }
+
 
 
 # Password validation
