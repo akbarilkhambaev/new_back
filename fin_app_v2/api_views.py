@@ -266,7 +266,7 @@ def recent_projects(request):
 
 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def upcoming_deadlines(request):
     """Get upcoming task deadlines"""
     today = timezone.now().date()
