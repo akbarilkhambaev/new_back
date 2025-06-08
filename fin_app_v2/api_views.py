@@ -132,7 +132,7 @@ class DeveloperTasksView(generics.ListAPIView):
 
 # Dashboard API Views
 @api_view(['GET'])
-@permission_classes([permissions.AllowAny])
+@permission_classes([IsAdminUser])
 def dashboard_stats(request):
     """Get dashboard statistics"""
     today = timezone.now().date()
