@@ -58,6 +58,7 @@ def api_get_all_jobs(request):
             client_company_phone=data.get('client_company_phone', ''),
             client_company_address=data.get('client_company_address', ''),
             client_website=data.get('client_website', ''),
+            status=data.get('status', 'active'),  # добавлено поле status
         )
         job_data = {
             'id': job.id,
