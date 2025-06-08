@@ -134,7 +134,6 @@ REST_FRAMEWORK = {
 #         'PORT': '3306',                     # New proxy port number
 #     }
 # }
-
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
@@ -142,8 +141,8 @@ DATABASES = {
         'USER': os.environ.get('MYSQL_USER', 'root'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'pkEyNhDufdQgKZVfTZtREAaxVBcLrOvl'),
         'HOST': os.environ.get('MYSQL_HOST', 'shinkansen.proxy.rlwy.net'),
-        'PORT': os.environ.get('MYSQL_PORT', '3306'),
-}
+        'PORT': os.environ.get('MYSQL_PORT', '59783'),
+    }
 }
 
 
