@@ -26,7 +26,7 @@ class IsAdminUser(permissions.BasePermission):
 class JobListCreateView(generics.ListCreateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         queryset = Job.objects.all()
@@ -49,7 +49,7 @@ class JobListCreateView(generics.ListCreateAPIView):
 class JobDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def destroy(self, request, *args, **kwargs):
         # Only admin can delete jobs
@@ -64,7 +64,7 @@ class JobDetailView(generics.RetrieveUpdateDestroyAPIView):
 # Task API Views
 class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         queryset = Task.objects.select_related('job').prefetch_related('assigned_users')
@@ -105,7 +105,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def update(self, request, *args, **kwargs):
         # Check if user can update this task
@@ -122,7 +122,7 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
 # Developer Task Views
 class DeveloperTasksView(generics.ListAPIView):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         return Task.objects.filter(
@@ -192,7 +192,7 @@ def dashboard_stats(request):
 
 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def monthly_revenue_chart(request):
     """Get monthly revenue data for charts"""
     from datetime import datetime
@@ -229,7 +229,7 @@ def monthly_revenue_chart(request):
 
 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def project_status_distribution(request):
     """Get project status distribution for pie chart"""
     today = timezone.now().date()
@@ -257,7 +257,7 @@ def project_status_distribution(request):
 
 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def recent_projects(request):
     """Get recent projects for dashboard"""
     recent_jobs = Job.objects.order_by('-created_at')[:5]
@@ -281,7 +281,7 @@ def upcoming_deadlines(request):
 
 # Calendar API Views
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def calendar_tasks(request):
     """Get tasks for calendar view"""
     year = int(request.query_params.get('year', timezone.now().year))
