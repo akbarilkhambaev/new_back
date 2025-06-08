@@ -4,6 +4,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Job, Task, DeductionLog
+from .models_crm import CrmJob, CrmTask, CrmTaskComment, CrmTaskFile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -145,3 +146,43 @@ class DashboardStatsSerializer(serializers.Serializer):
     total_products = serializers.IntegerField()
     monthly_income = serializers.DecimalField(max_digits=10, decimal_places=2)
     income_balance = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+
+class CrmJobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CrmJob
+        fields = [
+            'id', 'title', 'client_email', 'over_all_income', 'created_at',
+            'full_name', 'phone_number', 'position',
+            'client_company_name', 'client_company_phone',
+            'client_company_address', 'client_website',
+            'status'  # добавлено поле статус
+        ]
+        read_only_fields = ['created_at']
+
+
+class CrmTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CrmTask
+        fields = [
+            'id', 'job', 'title', 'description'
+            # Добавьте другие поля задачи, если они есть
+        ]
+
+
+class CrmTaskCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CrmTaskComment
+        fields = [
+            'id', 'task', 'author', 'text', 'created_at'
+        ]
+        read_only_fields = ['created_at']
+
+
+class CrmTaskFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CrmTaskFile
+        fields = [
+            'id', 'task', 'file', 'uploaded_at'
+        ]
+        read_only_fields = ['uploaded_at']

@@ -13,6 +13,9 @@ from .serializers import (
     JobSerializer, TaskSerializer, UserSerializer,
     DeductionLogSerializer, DashboardStatsSerializer
 )
+from rest_framework import viewsets
+from .models_crm import CrmJob, CrmTask, CrmTaskComment, CrmTaskFile
+from .serializers import CrmJobSerializer, CrmTaskSerializer, CrmTaskCommentSerializer, CrmTaskFileSerializer
 
 
 class IsAdminUser(permissions.BasePermission):
@@ -308,3 +311,36 @@ def calendar_tasks(request):
         })
 
     return Response(tasks_by_date)
+
+
+# CRM API Views
+class CrmJobViewSet(viewsets.ModelViewSet):
+    queryset = CrmJob.objects.all()
+    serializer_class = CrmJobSerializer
+
+
+class CrmTaskViewSet(viewsets.ModelViewSet):
+    queryset = CrmTask.objects.all()
+    serializer_class = CrmTaskSerializer
+
+
+class CrmTaskCommentViewSet(viewsets.ModelViewSet):
+    queryset = CrmTaskComment.objects.all()
+    serializer_class = CrmTaskCommentSerializer
+
+
+class CrmTaskFileViewSet(viewsets.ModelViewSet):
+    queryset = CrmTaskFile.objects.all()
+    serializer_class = CrmTaskFileSerializer
+
+
+class CrmJobListCreateView(generics.ListCreateAPIView):
+    queryset = CrmJob.objects.all()
+    serializer_class = CrmJobSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class CrmJobDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CrmJob.objects.all()
+    serializer_class = CrmJobSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
