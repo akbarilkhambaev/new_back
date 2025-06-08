@@ -124,17 +124,27 @@ REST_FRAMEWORK = {
 #     )
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',  # Using the MySQL connector for Django
+#         'NAME': 'railway',                   # Database name
+#         'USER': 'root',                      # Database user
+#         'PASSWORD': 'chqxDZFCDpurlWGRogCiZYdWnbYUJTlcm',  # Database password
+#         'HOST': 'yamanote.proxy.rlwy.net',   # New proxy host address
+#         'PORT': '3306',                     # New proxy port number
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',  # Using the MySQL connector for Django
-        'NAME': 'railway',                   # Database name
-        'USER': 'root',                      # Database user
-        'PASSWORD': 'chqxDZFCDpurlWGRogCiZYdWnbYUJTlcm',  # Database password
-        'HOST': 'yamanote.proxy.rlwy.net',   # New proxy host address
-        'PORT': '3306',                     # New proxy port number
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE', 'railway'),
+        'USER': os.environ.get('MYSQL_USER', 'root'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'pkEyNhDufdQgKZVfTZtREAaxVBcLrOvl'),
+        'HOST': os.environ.get('MYSQL_HOST', 'mysql.railway.internal'),
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
 }
-
+}
 
 
 
