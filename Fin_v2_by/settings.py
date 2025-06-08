@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,18 +26,15 @@ SECRET_KEY = 'django-insecure-#n2-i+irkon9q9+(gbu5&92)+rg-#p8np52g4)$--7efrbfvl4
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    'https://finprojectfordbr-master-2-production.up.railway.app',
-    'http://localhost:3000',
-    'http://127.0.1:3000',
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    'https://web-production-b124.up.railway.app',
     'https://fixed-dividcrm.vercel.app',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://finprojectfordbr-master-2-production.up.railway.app",
-    "https://fixed-dividcrm.vercel.app"
-]
 
 # Application definition
 
@@ -48,9 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fin_app_v2.apps.FinAppV2Config',
-    'rest_framework',
     'corsheaders',
+    'fin_app_v2.apps.FinAppV2Config',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +62,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+X_FRAME_OPTIONS = 'ALLOWALL'
 ROOT_URLCONF = 'Fin_v2_by.urls'
 
 TEMPLATES = [
@@ -90,12 +88,12 @@ WSGI_APPLICATION = 'Fin_v2_by.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 
@@ -105,7 +103,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
@@ -116,29 +114,41 @@ REST_FRAMEWORK = {
 }
 
 
+# import os
+# import dj_database_url
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',  # Using the MySQL connector for Django
-        'NAME': 'railway',                   # Database name
-        'USER': 'root',                      # Database user
-        'PASSWORD': 'cvokSRmvtuekukuhkbssEWUPJubkDqQA',  # Database password
-        'HOST': 'junction.proxy.rlwy.net',   # New proxy host address
-        'PORT': '20556',                     # New proxy port number
-    }
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         os.environ.get('MYSQL_PUBLIC_URL', 'mysql://root:hqxDZFCDpurlWGRogCiZYdWnbYUJTlcm@yamanote.proxy.rlwy.net:34397/railway'),
+#         engine='mysql.connector.django'
+#     )
+# }
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'sTwrjZnTfHOhgnXKSYAXuDQRcHmXbjSy',
-#         'HOST': 'interchange.proxy.rlwy.net',
-#         'PORT': '56000',
+#         'ENGINE': 'mysql.connector.django',  # Using the MySQL connector for Django
+#         'NAME': 'railway',                   # Database name
+#         'USER': 'root',                      # Database user
+#         'PASSWORD': 'chqxDZFCDpurlWGRogCiZYdWnbYUJTlcm',  # Database password
+#         'HOST': 'yamanote.proxy.rlwy.net',   # New proxy host address
+#         'PORT': '3306',                     # New proxy port number
 #     }
 # }
+
+
+
+
+REDIS_URL = os.environ.get("REDIS_URL", "redis://default:awDp645JqtW6jShy!w_H*1sk0zfTcW0v@redis.railway.internal:6379")
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 
 # Password validation
@@ -175,7 +185,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-import os
+
 
 # Define a directory for collected static files
 STATIC_URL = '/static/'
