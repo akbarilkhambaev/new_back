@@ -337,10 +337,18 @@ class CrmTaskFileViewSet(viewsets.ModelViewSet):
 class CrmJobListCreateView(generics.ListCreateAPIView):
     queryset = CrmJob.objects.all()
     serializer_class = CrmJobSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class CrmJobDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CrmJob.objects.all()
     serializer_class = CrmJobSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
