@@ -22,6 +22,5 @@ urlpatterns = [
     path('', include('fin_app_v2.urls')),
     path('api/', include('fin_app_v2.api_urls')),  # <== /api/
     path('admin/', admin.site.urls),
-    path('api/tasks/', include('fin_app_v2.api_task_urls')),  # <== /api/tasks/
 
 ]
