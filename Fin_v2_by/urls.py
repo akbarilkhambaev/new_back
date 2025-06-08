@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('fin_app_v2.urls')),             # обычные HTML страницы
-    path('api/', include('fin_app_v2.api_urls')),     # все REST API включая токены
-    path('api/', include('fin_app_v2.api_task_urls')),  # задачи, обновления и т.д.
+    # Main app URLs
+    path('', include('fin_app_v2.urls')),
+    path('api/', include('fin_app_v2.api_urls')),  # <== /api/
     path('admin/', admin.site.urls),
+    path('api/tasks/', include('fin_app_v2.api_task_urls')),  # <== /api/tasks/
+
 ]
