@@ -141,7 +141,7 @@ DATABASES = {
         'NAME': os.environ.get('MYSQL_DATABASE', 'railway'),
         'USER': os.environ.get('MYSQL_USER', 'root'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'pkEyNhDufdQgKZVfTZtREAaxVBcLrOvl'),
-        'HOST': os.environ.get('MYSQL_HOST', 'mysql.railway.internal'),
+        'HOST': os.environ.get('MYSQL_HOST', 'shinkansen.proxy.rlwy.net'),
         'PORT': os.environ.get('MYSQL_PORT', '3306'),
 }
 }
